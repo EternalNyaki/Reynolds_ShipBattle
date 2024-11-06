@@ -12,10 +12,19 @@ public class GunshipController : MonoBehaviour
     {
         //Takes the mouse position in screen coordinates (pixels) and converts it to world coordinates
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
+
         //These methods aim the cannons based on where the mouse is in the 2D space
         Vector3 leftDirection = AimCannon(mousePosition, leftCannon);
         Vector3 rightDirection = AimCannon(mousePosition, rightCannon);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            SpawnCannonball(leftCannon, cannonballForce);
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            SpawnCannonball(rightCannon, cannonballForce);
+        }
     }
 
     //Given a target position and the transform of a cannon, aims that cannon at that target
@@ -33,5 +42,12 @@ public class GunshipController : MonoBehaviour
 
         //We also then finally return the direction that we want to aim based on the target
         return direction;
+    }
+
+    private void SpawnCannonball(Transform cannon, float force)
+    {
+        GameObject cannonball = Instantiate(cannonballPrefab, cannon.position, cannon.rotation);
+        Vector2 dirVec = new Vector2(Mathf.Cos(cannonball.transform.rotation.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(cannonball.transform.rotation.eulerAngles.z * Mathf.Deg2Rad)).normalized;
+        cannonball.GetComponent<Rigidbody2D>().AddForce(dirVec * force);
     }
 }

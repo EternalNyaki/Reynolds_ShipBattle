@@ -825,7 +825,7 @@ MonoBehaviour:
   leftCannon: {fileID: 6443999}
   rightCannon: {fileID: 1685397580}
   cannonballPrefab: {fileID: 8214065686384112071, guid: 44074452453c295498f805cf7a408f27, type: 3}
-  cannonballForce: 150
+  cannonballForce: 300
 --- !u!4 &1800028000
 Transform:
   m_ObjectHideFlags: 0

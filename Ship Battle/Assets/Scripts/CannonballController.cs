@@ -10,4 +10,9 @@ public class CannonballController : MonoBehaviour
         //After lifespan seconds, this object will be destroyed
         Destroy(gameObject, lifespan);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
